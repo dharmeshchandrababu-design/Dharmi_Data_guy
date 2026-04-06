@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dharmesh Chandrababu — Data & Commercial Analytics</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0f0d;--bg2:#111810;--bg3:#161e14;
+    --green:#4ade80;--green-dim:#22c55e;
+    --green-muted:rgba(74,222,128,0.12);
+    --green-border:rgba(74,222,128,0.2);
+    --text:#e8f0e4;--text-muted:#7a9070;--text-dim:#4a5e44;
+    --amber:#fbbf24;--amber-muted:rgba(251,191,36,0.12);
+    --white:#f0f7ec;
+    --serif:'DM Serif Display',Georgia,serif;
+    --sans:'DM Sans',sans-serif;
+    --mono:'DM Mono',monospace;
+    --radius:12px;--t:0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:hidden}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.4}
+  body::after{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(74,222,128,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(74,222,128,0.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+  .container{max-width:860px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+
+  header{padding:80px 0 40px}
+  .eyebrow{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+  .eyebrow::before{content:'';width:24px;height:1px;background:var(--green)}
+  h1{font-family:var(--serif);font-size:clamp(42px,7vw,72px);font-weight:400;line-height:1.05;color:var(--white);margin-bottom:8px}
+  h1 em{font-style:italic;color:var(--green)}
+  .role{font-family:var(--mono);font-size:13px;color:var(--text-muted);margin-top:16px;letter-spacing:0.05em}
+  .tagline{max-width:540px;margin-top:24px;font-size:17px;color:var(--text-muted);line-height:1.7;font-weight:300}
+  .tagline strong{color:var(--text);font-weight:500}
+
+  .hero-figure{margin-top:40px;display:flex;justify-content:center}
+  .hero-figure img{width:min(100%,480px);border-radius:24px;border:1px solid var(--green-border);background:var(--bg2);box-shadow:0 24px 80px rgba(0,0,0,0.4);display:block;transition:transform var(--t),box-shadow var(--t),border-color var(--t)}
+  .hero-figure img:hover{transform:translateY(-4px);border-color:rgba(74,222,128,0.4);box-shadow:0 32px 100px rgba(0,0,0,0.5)}
+  .hero-placeholder{width:min(100%,480px);height:300px;border-radius:24px;border:1.5px dashed var(--green-border);background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+  .hero-placeholder-icon{font-size:40px;opacity:0.35}
+  .hero-placeholder-text{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.1em;text-align:center;line-height:1.9}
+
+  .impact-bar{display:flex;margin:48px 0;border:1px solid var(--green-border);border-radius:var(--radius);overflow:hidden;background:var(--bg2)}
+  .impact-item{flex:1;padding:20px 24px;border-right:1px solid var(--green-border);position:relative;overflow:hidden}
+  .impact-item:last-child{border-right:none}
+  .impact-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform 0.6s var(--t)}
+  .impact-item:hover::before{transform:scaleX(1)}
+  .impact-num{font-family:var(--serif);font-size:28px;color:var(--green);display:block;line-height:1}
+  .impact-label{font-size:11px;color:var(--text-muted);font-family:var(--mono);letter-spacing:0.05em;margin-top:4px;display:block}
+
+  .section-label{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:12px}
+  .section-label::after{content:'';flex:1;height:1px;background:var(--green-border)}
+
+  /* VIDEO */
+  .video-section{margin-bottom:72px}
+  .video-card{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:28px;transition:border-color var(--t)}
+  .video-card:hover{border-color:rgba(74,222,128,0.4)}
+  .video-card-title{font-family:var(--serif);font-size:26px;color:var(--white);margin-bottom:10px;font-weight:400}
+  .video-card-desc{font-size:14px;color:var(--text-muted);line-height:1.75;max-width:600px;margin-bottom:20px}
+  .video-placeholder{width:100%;height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-radius:10px;background:var(--bg3);border:1.5px dashed var(--green-border)}
+  .video-placeholder-icon{font-size:32px;opacity:0.3}
+  .video-placeholder-text{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.1em;text-align:center;line-height:1.9}
+
+  /* CHAT */
+  .chat-section{margin-bottom:72px}
+  .chat-intro{font-size:15px;color:var(--text-muted);margin-bottom:24px;line-height:1.7;max-width:600px}
+  .chat-window{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);overflow:hidden}
+  .chat-topbar{background:var(--bg3);border-bottom:1px solid var(--green-border);padding:12px 20px;display:flex;align-items:center;gap:12px}
+  .avatar-dot{width:32px;height:32px;border-radius:50%;background:var(--green-muted);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:14px;color:var(--green);flex-shrink:0}
+  .chat-name{font-size:13px;font-weight:500;color:var(--white)}
+  .chat-status{font-family:var(--mono);font-size:10px;color:var(--green);display:flex;align-items:center;gap:5px}
+  .status-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+  .chat-messages{padding:24px 20px;min-height:200px;max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:16px}
+  .chat-messages::-webkit-scrollbar{width:4px}
+  .chat-messages::-webkit-scrollbar-thumb{background:var(--green-border);border-radius:2px}
+  .msg{display:flex;gap:10px;animation:msgIn 0.3s ease}
+  @keyframes msgIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  .msg.user{flex-direction:row-reverse}
+  .msg-avatar{width:28px;height:28px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-family:var(--mono);margin-top:2px}
+  .msg-avatar.da{background:var(--green-muted);border:1px solid var(--green-border);color:var(--green)}
+  .msg-avatar.yu{background:var(--amber-muted);border:1px solid rgba(251,191,36,0.25);color:var(--amber)}
+  .msg-bubble{max-width:78%;padding:10px 14px;border-radius:10px;font-size:14px;line-height:1.65}
+  .msg.da .msg-bubble{background:var(--bg3);border:1px solid var(--green-border);color:var(--text);border-top-left-radius:2px}
+  .msg.user .msg-bubble{background:var(--amber-muted);border:1px solid rgba(251,191,36,0.25);color:var(--text);border-top-right-radius:2px}
+  .msg-bubble strong{color:var(--green);font-weight:500}
+  .msg-bubble a{color:var(--green)}
+  .typing-indicator{display:flex;gap:4px;padding:8px 4px;align-items:center}
+  .typing-indicator span{width:6px;height:6px;border-radius:50%;background:var(--green);animation:bounce 1.2s infinite}
+  .typing-indicator span:nth-child(2){animation-delay:0.2s}
+  .typing-indicator span:nth-child(3){animation-delay:0.4s}
+  @keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-6px);opacity:1}}
+  .chat-suggestions{padding:0 20px 16px;display:flex;flex-wrap:wrap;gap:8px}
+  .suggestion-chip{font-family:var(--mono);font-size:11px;padding:6px 12px;border-radius:20px;border:1px solid var(--green-border);color:var(--text-muted);background:transparent;cursor:pointer;transition:all var(--t)}
+  .suggestion-chip:hover{background:var(--green-muted);color:var(--green);border-color:var(--green)}
+  .api-key-row{display:none}
+  .chat-input-row{border-top:1px solid var(--green-border);padding:14px 16px;display:flex;gap:10px;align-items:center;background:var(--bg3)}
+  .chat-input{flex:1;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--sans);font-size:14px;caret-color:var(--green)}
+  .chat-input::placeholder{color:var(--text-dim)}
+  .send-btn{width:32px;height:32px;border-radius:8px;background:var(--green-muted);border:1px solid var(--green-border);color:var(--green);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all var(--t);flex-shrink:0}
+  .send-btn:hover{background:var(--green);color:var(--bg)}
+  .send-btn:disabled{opacity:0.4;cursor:not-allowed}
+  .send-btn svg{width:14px;height:14px}
+  .chat-notice{font-family:var(--mono);font-size:10px;color:var(--text-dim);margin-top:10px;padding:10px 14px;border:1px solid var(--green-border);border-radius:8px;background:var(--bg3);line-height:1.7;letter-spacing:0.03em}
+  .chat-notice a{color:var(--green);text-decoration:none}
+
+  /* TIMELINE */
+  .timeline{margin-bottom:72px}
+  .tl-item{display:grid;grid-template-columns:140px 1fr;gap:0 32px;margin-bottom:48px;position:relative}
+  .tl-item::before{content:'';position:absolute;left:148px;top:8px;bottom:-48px;width:1px;background:var(--green-border)}
+  .tl-item:last-child::before{display:none}
+  .tl-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);padding-top:6px;text-align:right;line-height:1.4}
+  .tl-content{padding-left:24px;position:relative}
+  .tl-content::before{content:'';position:absolute;left:-5px;top:8px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--green);box-shadow:0 0 12px rgba(74,222,128,0.4)}
+  .tl-co{font-family:var(--mono);font-size:11px;color:var(--green-dim);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:4px}
+  .tl-title{font-family:var(--serif);font-size:20px;color:var(--white);margin-bottom:10px;font-weight:400}
+  .tl-desc{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:14px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:20px;border:1px solid var(--green-border);color:var(--green);background:var(--green-muted)}
+  .pill.a{border-color:rgba(251,191,36,0.3);color:var(--amber);background:var(--amber-muted)}
+
+  /* SKILLS */
+  .domain-card{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:28px;display:grid;grid-template-columns:1fr 1.3fr;gap:32px;margin-bottom:16px;position:relative;overflow:hidden;transition:border-color var(--t)}
+  .domain-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
+  .domain-card:hover{border-color:rgba(74,222,128,0.4)}
+  .dc-ey{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px}
+  .dc-title{font-family:var(--serif);font-size:22px;color:var(--white);margin-bottom:10px;font-weight:400}
+  .dc-desc{font-size:13px;color:var(--text-muted);line-height:1.7}
+  .tag-grid{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+  .dtag{font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--green-border);background:var(--green-muted);color:var(--text);transition:all var(--t);cursor:default}
+  .dtag:hover{border-color:var(--green);color:var(--green);transform:translateY(-1px)}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .col-card{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:24px;transition:border-color var(--t)}
+  .col-card:hover{border-color:rgba(74,222,128,0.4)}
+  .col-hd{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13px;font-weight:500;color:var(--green)}
+  .col-hd svg{stroke:var(--green);flex-shrink:0}
+  .bar-list{display:flex;flex-direction:column;gap:14px}
+  .bar-label{font-family:var(--mono);font-size:11px;color:var(--text-muted);display:block;margin-bottom:5px;letter-spacing:0.02em}
+  .bar-track{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;border:1px solid var(--green-border)}
+  .bar-fill{height:100%;background:linear-gradient(90deg,var(--green-dim),var(--green));border-radius:2px}
+  .bubbles{display:flex;flex-wrap:wrap;gap:8px}
+  .bubble{font-family:var(--mono);font-size:11px;padding:5px 11px;border-radius:6px;letter-spacing:0.04em;transition:all var(--t);cursor:default}
+  .bubble:hover{transform:translateY(-2px)}
+  .bubble.p{background:var(--green);color:var(--bg);font-weight:500}
+  .bubble.s{background:var(--green-muted);color:var(--green);border:1px solid var(--green-border)}
+  .bubble.t{background:var(--bg3);color:var(--text-muted);border:1px solid var(--green-border)}
+  .lang-row{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:24px 28px;display:flex;align-items:center}
+  .lang-badge{display:flex;align-items:center;gap:14px;flex:1}
+  .lang-flag{font-size:28px;line-height:1}
+  .lang-name{font-size:14px;font-weight:500;color:var(--white);margin-bottom:2px}
+  .lang-level{font-family:var(--mono);font-size:10px;color:var(--text-muted);letter-spacing:0.05em;margin-bottom:6px}
+  .ldots{display:flex;gap:4px}
+  .ld{width:8px;height:8px;border-radius:50%}
+  .ld.on{background:var(--green)}
+  .ld.off{background:var(--bg3);border:1px solid var(--green-border)}
+  .lang-div{width:1px;height:48px;background:var(--green-border);margin:0 28px}
+
+  /* EDUCATION */
+  .edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:72px}
+  .edu-card{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden;transition:border-color var(--t),transform var(--t)}
+  .edu-card:hover{border-color:rgba(74,222,128,0.4);transform:translateY(-2px)}
+  .edu-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:0;transition:opacity var(--t)}
+  .edu-card:hover::after{opacity:1}
+  .edu-yr{display:inline-block;font-family:var(--mono);font-size:10px;color:var(--green);background:var(--green-muted);border:1px solid var(--green-border);border-radius:20px;padding:3px 10px;letter-spacing:0.05em;margin-bottom:16px}
+  .edu-deg{font-family:var(--serif);font-size:20px;color:var(--white);font-weight:400;margin-bottom:4px;line-height:1.2}
+  .edu-sub{font-size:13px;color:var(--text-muted);margin-bottom:14px}
+  .edu-sch{font-family:var(--mono);font-size:11px;color:var(--text-dim);display:flex;align-items:center;gap:6px;margin-bottom:14px;letter-spacing:0.03em}
+  .edu-sch svg{stroke:var(--text-dim);flex-shrink:0}
+  .edu-grade{display:flex;align-items:center;gap:10px}
+  .grade-pill{font-family:var(--mono);font-size:12px;font-weight:500;background:var(--amber-muted);color:var(--amber);border:1px solid rgba(251,191,36,0.3);border-radius:20px;padding:3px 10px}
+  .grade-note{font-size:11px;color:var(--text-dim);font-family:var(--mono);letter-spacing:0.04em}
+
+  /* PROJECTS */
+  .proj-list{display:flex;flex-direction:column;margin-bottom:72px}
+  .proj-item{display:grid;grid-template-columns:56px 1fr;gap:20px;padding:28px 0;border-bottom:1px solid var(--green-border);transition:background var(--t)}
+  .proj-item:first-child{border-top:1px solid var(--green-border)}
+  .proj-item:hover{background:rgba(74,222,128,0.02)}
+  .proj-icon-col{display:flex;flex-direction:column;align-items:center;gap:8px;padding-top:4px}
+  .proj-icon{width:40px;height:40px;border-radius:10px;background:var(--green-muted);border:1px solid var(--green-border);display:flex;align-items:center;justify-content:center;transition:all var(--t);flex-shrink:0}
+  .proj-icon svg{width:20px;height:20px;stroke:var(--green);stroke-width:1.5;fill:none;transition:stroke var(--t)}
+  .proj-item:hover .proj-icon{background:var(--green);border-color:var(--green);box-shadow:0 0 16px rgba(74,222,128,0.3)}
+  .proj-item:hover .proj-icon svg{stroke:var(--bg)}
+  .proj-num{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:0.05em}
+  .proj-ctx{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:6px}
+  .proj-title{font-family:var(--serif);font-size:20px;color:var(--white);font-weight:400;margin-bottom:10px;line-height:1.2}
+  .proj-desc{font-size:13px;color:var(--text-muted);line-height:1.75;margin-bottom:14px;max-width:640px}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:6px}
+  .ptag{font-family:var(--mono);font-size:10px;padding:3px 9px;border-radius:4px;background:var(--bg3);color:var(--text-dim);border:1px solid var(--green-border);letter-spacing:0.03em;transition:all var(--t)}
+  .proj-item:hover .ptag{color:var(--text-muted);border-color:rgba(74,222,128,0.3)}
+
+  /* MOTIVATION */
+  .motivation-card{background:var(--bg2);border:1px solid var(--green-border);border-radius:var(--radius);padding:36px;position:relative;overflow:hidden}
+  .motivation-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--green-dim),transparent)}
+  .motivation-pull{font-family:var(--serif);font-size:clamp(20px,3vw,26px);color:var(--green);font-style:italic;line-height:1.3;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--green-border)}
+  .motivation-body p{font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+  .motivation-body p:last-child{margin-bottom:0}
+  .motivation-body em{color:var(--white);font-style:normal;font-weight:500}
+  .motivation-closer{font-size:15px;color:var(--text) !important;font-weight:500;border-top:1px solid var(--green-border);padding-top:20px;margin-top:8px}
+
+  footer{border-top:1px solid var(--green-border);padding:40px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+  .footer-left{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:0.05em}
+  .footer-links{display:flex;gap:20px}
+  .footer-link{font-family:var(--mono);font-size:11px;color:var(--text-muted);text-decoration:none;letter-spacing:0.08em;text-transform:uppercase;transition:color var(--t)}
+  .footer-link:hover{color:var(--green)}
+  ::-webkit-scrollbar{width:6px}
+  ::-webkit-scrollbar-track{background:var(--bg)}
+  ::-webkit-scrollbar-thumb{background:var(--green-border);border-radius:3px}
+
+  @media(max-width:600px){
+    .impact-bar{flex-direction:column}
+    .impact-item{border-right:none;border-bottom:1px solid var(--green-border)}
+    .impact-item:last-child{border-bottom:none}
+    .tl-item{grid-template-columns:1fr;gap:4px}
+    .tl-item::before{display:none}
+    .tl-date{text-align:left;padding-top:0}
+    .tl-content{padding-left:0}
+    .tl-content::before{display:none}
+    .domain-card{grid-template-columns:1fr;gap:20px}
+    .two-col{grid-template-columns:1fr}
+    .lang-row{flex-direction:column;align-items:flex-start;gap:20px}
+    .lang-div{width:100%;height:1px;margin:0}
+    .edu-grid{grid-template-columns:1fr}
+    .proj-item{grid-template-columns:44px 1fr;gap:12px}
+    footer{flex-direction:column;align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <div class="eyebrow">Impact-Driven Analyst · Berlin, Germany</div>
+    <h1>Dharmesh<br><em>Chandrababu</em></h1>
+    <div class="role">BUSINESS & DATA ANALYTICS &nbsp;/&nbsp; PRICING STRATEGY &nbsp;/&nbsp; COMMERCIAL IMPACT</div>
+    <p class="tagline">People say one thing — <strong>data shows another</strong>. I find that gap, form a hypothesis, test it, and turn it into something that actually moves the needle for the business and the customer.</p>
+    <!-- PIXAR IMAGE — upload your image named "your-pixar-image.png" to GitHub alongside index.html -->
+    <div class="hero-figure">
+      <img src="your-pixar-image.png" alt="Dharmesh Chandrababu"
+           onerror="this.style.display='none';document.getElementById('hero-ph').style.display='flex'">
+      <div class="hero-placeholder" id="hero-ph" style="display:none">
+        <div class="hero-placeholder-icon">🧑‍💻</div>
+        <div class="hero-placeholder-text">Upload your Pixar image<br>Name the file: your-pixar-image.png<br>Place it next to index.html on GitHub</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- IMPACT BAR -->
+  <section class="impact-section">
+  <div class="section-label">Biggest Impact created so far</div>
+  <div class="impact-bar">
+    <div class="impact-item"><span class="impact-num">€80K+</span><span class="impact-label">Annual cost savings</span></div>
+    <div class="impact-item"><span class="impact-num">17%</span><span class="impact-label">Higher product conversion</span></div>
+    <div class="impact-item"><span class="impact-num">13%</span><span class="impact-label">Higher customer engagement</span></div>
+    <div class="impact-item"><span class="impact-num">40hrs</span><span class="impact-label">Monthly support saved</span></div>
+  </div>
+</section>
+
+  <!-- VIDEO SECTION -->
+  <section class="video-section">
+    <div class="section-label">60 Second Intro</div>
+    <div class="video-card">
+      <div class="video-card-title">Prefer the quick version?</div>
+      <p class="video-card-desc">Skip the long read. Watch my 60-second introduction — how I think about the energy transition, what I've built, and what drives me.</p>
+      <!-- Upload your video named "intro.mp4" to GitHub alongside index.html -->
+      <video controls style="width:100%;display:block;border-radius:10px;background:var(--bg3)"
+             onerror="this.style.display='none';document.getElementById('vid-ph').style.display='flex'">
+        <source src="intro.mp4" type="video/mp4">
+        <div id="vid-ph" class="video-placeholder">
+          <div class="video-placeholder-icon">🎬</div>
+          <div class="video-placeholder-text">Upload your intro video · Name it: intro.mp4</div>
+        </div>
+      </video>
+      <div id="vid-ph" class="video-placeholder" style="display:none;margin-top:0">
+        <div class="video-placeholder-icon">🎬</div>
+        <div class="video-placeholder-text">Upload your intro video named intro.mp4<br>to GitHub alongside index.html</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI CHAT -->
+  <section class="chat-section">
+    <div class="section-label">Ask Dharmesh — AI</div>
+    <p class="chat-intro">Numbers don't lie — people do. Ask me anything about how I use data to find what's actually true.</p>
+    <div class="chat-window">
+      <div class="chat-topbar">
+        <div class="avatar-dot">D</div>
+        <div>
+          <div class="chat-name">Dharmesh Chandrababu</div>
+          <div class="chat-status"><span class="status-dot"></span>AI-powered · responds instantly</div>
+        </div>
+      </div>
+      <div class="chat-messages" id="chatMessages">
+        <div class="msg da">
+          <div class="msg-avatar da">D</div>
+          <div class="msg-bubble">Hey! I'm Dharmesh — I'm obsessed with the gap between what people <em>say</em> they do and what the data actually shows. That gap is where the most interesting business problems live.<br><br>Ask me anything — how I approach pricing, how I turn messy data into a clear decision, what I've built, or what drives me.</div>
+        </div>
+      </div>
+      <div class="chat-suggestions" id="suggestions">
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">What's your biggest impact so far?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">How do you approach a pricing problem?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">How do you turn data into a business decision?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">What makes you different?</button>
+      </div>
+      <div class="api-key-row">
+        <span class="api-key-label">API KEY</span>
+        <input class="api-key-input" id="apiKey" type="password" placeholder="Paste your Anthropic API key here to activate chat  (sk-ant-...)"/>
+      </div>
+      <div class="chat-input-row">
+        <input class="chat-input" id="chatInput" type="text" placeholder="Ask me anything..." maxlength="300"/>
+        <button class="send-btn" id="sendBtn" onclick="sendMsg()" title="Send">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+        </button>
+      </div>
+  </section>
+
+ <!-- SKILLS -->
+  <section style="margin-bottom:72px">
+    <div class="section-label">What I Bring</div>
+    <div class="domain-card">
+      <div><div class="dc-ey">Industry Experience</div><div class="dc-title">Energy & Mobility</div><div class="dc-desc">Deep domain experience in energy markets and mobility — I already understand what customers are willing to pay, what moves the needle commercially, and how assets behave in these markets.</div></div>
+      <div class="tag-grid">
+        <span class="dtag">⚡ Energy Markets</span><span class="dtag">🚗 EV Smart Charging</span><span class="dtag">🔋 Flexible Assets</span><span class="dtag">☀️ PV & Batteries</span><span class="dtag">🏭 Virtual Power Plants</span><span class="dtag">🚙 Automotive OEM</span><span class="dtag">🛻 EV Subscriptions</span><span class="dtag">🌍 Global Market Rollout</span><span class="dtag">📈 Pricing Strategy</span><span class="dtag">🔬 Asset Optimisation</span><span class="dtag">🗺️ 15 International Markets</span>
+      </div>
+    </div>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-hd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg><span>Core Skills</span></div>
+        <div class="bar-list">
+          <div><span class="bar-label">Energy Market &amp; Flexibility Analysis</span><div class="bar-track"><div class="bar-fill" style="width:95%"></div></div></div>
+          <div><span class="bar-label">Product Strategy &amp; Growth</span><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div>
+          <div><span class="bar-label">Full Customer Journey Analysis</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div></div>
+          <div><span class="bar-label">KPI Frameworks &amp; Risk Analytics</span><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div></div>
+          <div><span class="bar-label">Business Development </span><div class="bar-track"><div class="bar-fill" style="width:85%"></div></div></div>
+          <div><span class="bar-label">Competitive Market Analysis</span><div class="bar-track"><div class="bar-fill" style="width:84%"></div></div></div>
+        </div>
+      </div>
+      <div class="col-card">
+        <div class="col-hd"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg><span>Technical Stack</span></div>
+        <div class="bubbles">
+          <span class="bubble p">Python</span><span class="bubble p">SQL</span><span class="bubble p">dbt</span><span class="bubble p">R</span><span class="bubble s">Power BI</span><span class="bubble s">Metabase</span><span class="bubble s">Excel (Adv.)</span><span class="bubble s">Matlab</span><span class="bubble s">Confluence</span><span class="bubble s">Jira</span><span class="bubble t">Energy Data Modeling</span><span class="bubble t">Battery Degradation</span><span class="bubble t">Dashboard Dev</span>
+        </div>
+      </div>
+    </div>
+    <div class="lang-row">
+      <div class="lang-badge"><div class="lang-flag">🇬🇧</div><div><div class="lang-name">English</div><div class="lang-level">Fluent</div><div class="ldots"><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span></div></div></div>
+      <div class="lang-div"></div>
+      <div class="lang-badge"><div class="lang-flag">🇩🇪</div><div><div class="lang-name">German</div><div class="lang-level">B1 — Working</div><div class="ldots"><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span><span class="ld off"></span><span class="ld off"></span></div></div></div>
+      <div class="lang-div"></div>
+      <div class="lang-badge"><div class="lang-flag">🇮🇳</div><div><div class="lang-name">Tamil</div><div class="lang-level">Native</div><div class="ldots"><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span><span class="ld on"></span></div></div></div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section>
+    <div class="section-label">Education</div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-yr">2020 – 2022</div>
+        <div class="edu-deg">Technical MBA</div>
+        <div class="edu-sub">Sustainable Mobility Management</div>
+        <div class="edu-sch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>TU Berlin, Germany</div>
+        <div class="edu-grade"><span class="grade-pill">Grade 1.6</span><span class="grade-note">Distinction</span></div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-yr">2013 – 2017</div>
+        <div class="edu-deg">B.E. Automotive Engineering</div>
+        <div class="edu-sub">Mechanical &amp; Vehicle Systems</div>
+        <div class="edu-sch"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Madras Institute of Technology, India</div>
+        <div class="edu-grade"><span class="grade-pill">Grade 1.7</span><span class="grade-note">First Class</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE -->
+  <section class="timeline">
+    <div class="section-label">Career Timeline</div>
+    <div class="tl-item">
+      <div class="tl-date">Jan 2024<br>— Present</div>
+      <div class="tl-content">
+        <div class="tl-co">Rabot Energy</div>
+        <div class="tl-title">Product Manager — Analytics & Strategy</div>
+        <div class="tl-desc">Built the company's first end-to-end customer lifecycle analytics platform — connecting contract, app behaviour, asset performance, and support data into a single warehouse (dbt, Metabase). Identified the gap between where customers were in their journey and where they needed to be, then used behavioural and pricing analysis to close it. Reduced churn from 3.0% to 2.2% through competitive benchmarking and targeted retention strategy.</div>
+        <div class="pills"><span class="pill">Customer Lifecycle Analytics</span><span class="pill">Behavioural Segmentation</span><span class="pill">Pricing & Retention Analysis</span><span class="pill">Python · SQL · dbt · R</span><span class="pill a">13% Engagement ↑</span><span class="pill a">Churn 3.0% → 2.2%</span><span class="pill a">40hrs/mo Support Saved</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Feb 2023<br>— Dec 2023</div>
+      <div class="tl-content">
+        <div class="tl-co">Rabot Energy</div>
+        <div class="tl-title">Data Analyst & Optimization Engineer</div>
+        <div class="tl-desc">Built simulation and optimisation models quantifying savings, carbon impact, and conversion potential across customer segments. Identified a €80K+ billing error in pricing logic through data investigation — a finding that came purely from questioning why numbers didn't add up. Co-developed an interactive savings calculator that helped customers understand their own behaviour — users who engaged converted 17% more than standard sign-ups.</div>
+        <div class="pills"><span class="pill">Simulation & Optimisation Modelling</span><span class="pill">Pricing Analysis</span><span class="pill">Conversion Analytics</span><span class="pill">Python · SQL · dbt · Matlab</span><span class="pill a">€80K+ Cost Savings</span><span class="pill a">17% Conversion Lift</span><span class="pill a">+2.3% Monthly Sales</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Nov 2021<br>— May 2022</div>
+      <div class="tl-content">
+        <div class="tl-co">Volkswagen Financial Services</div>
+        <div class="tl-title">Digital Pricing Intern</div>
+        <div class="tl-desc">Analysed customer behaviour and pricing sensitivity across European EV subscription markets to identify what actually drove conversion — not what customers said, but what the data showed. Found that payment friction across charging networks was a bigger barrier than price itself, which led to introducing the Charge & Fuel Card — a product change that lifted EV subscription sales by 7% and card adoption by 9%.</div>
+        <div class="pills"><span class="pill">Pricing Sensitivity Analysis</span><span class="pill">Conversion Funnel Analytics</span><span class="pill">European Market Research</span><span class="pill a">+1.7% Conversion</span><span class="pill a">+7% EV Sales</span><span class="pill a">-4.3% Bounce Rate</span></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">Jul 2017<br>— Sep 2020</div>
+      <div class="tl-content">
+        <div class="tl-co">Renault Nissan — RNTBCI</div>
+        <div class="tl-title">Product Owner — Aftersales Portal</div>
+        <div class="tl-desc">Owned end-to-end product development for a global aftersales digital platform rolled out across 15 international markets. Built Excel VBA automation tools improving product validation efficiency by 65%.</div>
+        <div class="pills"><span class="pill">Global Product Rollout</span><span class="pill">15 Markets</span><span class="pill">Excel VBA · MS Powerpoint · Confluence</span><span class="pill a">65% Validation Efficiency ↑</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECTS — dynamic SVG icons -->
+  <section>
+    <div class="section-label">Projects &amp; Research</div>
+    <div class="proj-list">
+
+      <div class="proj-item">
+        <div class="proj-icon-col">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="11" rx="2"/><path d="M18 10h2a1 1 0 011 1v3a1 1 0 01-1 1h-2"/><line x1="6" y1="11" x2="6" y2="14"/><line x1="10" y1="9" x2="10" y2="16"/></svg>
+          </div>
+          <span class="proj-num">01</span>
+        </div>
+        <div>
+          <div class="proj-ctx">Master Thesis · TU Berlin</div>
+          <div class="proj-title">Revenue vs Degradation — Optimisation Model for Bidirectional EV Assets</div>
+          <div class="proj-desc">Built an optimisation algorithm to find the ideal balance between maximising grid revenue and minimising battery degradation cost for bidirectional EV assets. Used real-world battery data and live electricity market signals as inputs. Validated the commercial viability through financial modelling, SWOT analysis, and a full business model canvas — translating a technical model into a business case.</div>
+          <div class="proj-tags"><span class="ptag">Optimisation Modelling</span><span class="ptag">Battery Degradation Analysis</span><span class="ptag">Electricity Market Signals</span><span class="ptag">Python · Matlab</span><span class="ptag">Business Model Canvas</span><span class="ptag">SWOT Analysis</span><span class="ptag">Financial Modelling</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-icon-col">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2v-6l2-4h14l2 4v6a2 2 0 01-2 2h-2"/><circle cx="7.5" cy="17.5" r="2.5"/><circle cx="16.5" cy="17.5" r="2.5"/><line x1="5" y1="9" x2="19" y2="9"/></svg>
+          </div>
+          <span class="proj-num">02</span>
+        </div>
+        <div>
+          <div class="proj-ctx">MBA Project · Audi Partnership</div>
+          <div class="proj-title">V2G Business Model for Audi EVs</div>
+          <div class="proj-desc">Developed a business plan integrating V2G as a native product feature in Audi EVs, targeting California as primary market. Conducted market research and energy market prognosis based on EV and electricity market volatility, then formulated the business model and evaluated financial projections for scalable global rollout.</div>
+          <div class="proj-tags"><span class="ptag">Business Model Design</span><span class="ptag">California Energy Market</span><span class="ptag">Market Prognosis</span><span class="ptag">Financial Projections</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-icon-col">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><polyline points="23 20 23 14 17 14"/><path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/></svg>
+          </div>
+          <span class="proj-num">03</span>
+        </div>
+        <div>
+          <div class="proj-ctx">MBA Startup Project · India Market</div>
+          <div class="proj-title">Second Life EV Batteries — Startup Plan</div>
+          <div class="proj-desc">Built a startup business plan around repurposing retired EV battery packs as stationary energy storage in India. Conducted market research, developed a business model canvas and value proposition canvas, performed sales forecasting, and created full financial statements including balance sheet and cash flow statement.</div>
+          <div class="proj-tags"><span class="ptag">Second Life Batteries</span><span class="ptag">India Energy Market</span><span class="ptag">Business Model Canvas</span><span class="ptag">Financial Statements</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-icon-col">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+          </div>
+          <span class="proj-num">04</span>
+        </div>
+        <div>
+          <div class="proj-ctx">Bachelor Thesis · MIT Chennai</div>
+          <div class="proj-title">Magnetic Driven Alternator</div>
+          <div class="proj-desc">Developed a magnetically driven alternator system that decouples the alternator from the engine using magnetic drive, reducing mechanical engine load by 20% and improving overall vehicle efficiency and fuel consumption.</div>
+          <div class="proj-tags"><span class="ptag">Automotive Engineering</span><span class="ptag">20% Load Reduction</span><span class="ptag">Fuel Efficiency</span><span class="ptag">Mechanical Design</span></div>
+        </div>
+      </div>
+
+      <div class="proj-item">
+        <div class="proj-icon-col">
+          <div class="proj-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <span class="proj-num">05</span>
+        </div>
+        <div>
+          <div class="proj-ctx">Bachelor Project · MIT Chennai</div>
+          <div class="proj-title">Smart Airbag Suit for Two-Wheelers</div>
+          <div class="proj-desc">Designed a wearable airbag suit for motorcycle riders that detects loss-of-control using tilt sensors and auto-inflates beyond a critical threshold of 68°. Targeting the ~80,000 annual motorcycle fatalities in high-risk accidents, the system deploys in milliseconds to protect the rider before impact.</div>
+          <div class="proj-tags"><span class="ptag">Safety Systems</span><span class="ptag">Sensor Integration</span><span class="ptag">Wearable Tech</span><span class="ptag">Automotive Safety</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="71151910031c140219131013044048484731161c10181d5f121e1c">[email&#160;protected]</a> &nbsp;·&nbsp; Berlin, Germany &nbsp;·&nbsp; +49 17669227293</div>
+    <div class="footer-links">
+      <a class="footer-link" href="https://www.linkedin.com/in/dharmesh-chandrababu-b55b341a1/" target="_blank">LinkedIn</a>
+      <a class="footer-link" href="/cdn-cgi/l/email-protection#22464a43504f47514a40434057131b1b1462454f434b4e0c414d4f">Email</a>
+    </div>
+  </footer>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const SYSTEM = `You are Dharmesh Chandrababu. You are having a real, casual conversation — not a job interview, not a presentation. Speak exactly like Dharmesh speaks: warm, genuine, a little informal, sometimes starting with "Hmm" or "Honestly" or "Haha" or "Look". You use words like "basically", "let's say", "so", "the thing is". You give context before your answer. You admit things openly. You never sound rehearsed. You never bullet-point your life unless someone asks for specifics. Never say you are an AI. If something is too personal, say you'd rather talk about it over coffee.
+
+HOW DHARMESH SPEAKS — follow this voice exactly:
+- Start answers with a human reaction: "Hmm", "Honestly", "Haha", "Look", "Yeah so", "That's a good one"
+- Give context before the answer — what the situation WAS before, then what changed
+- Use connector words naturally: "basically", "so", "let's say", "the thing is", "I mean"
+- Admit things openly — uncertainty, aspiration, what didn't satisfy him
+- Never sound like you're reading from a CV
+
+ANSWER LENGTH RULES — this is strict:
+- For ALL casual, story, motivation, or personal questions: 3–5 sentences maximum. Say one thing well and stop. Leave them wanting to ask more.
+- For achievement or impact questions ONLY: up to 8 sentences or a tight bullet list with numbers. Recruiters asking about impact want the detail.
+- Never go beyond 8 sentences under any circumstance.
+- If a topic needs more, say one compelling thing and let them ask the follow-up. Do not dump everything at once.
+
+CORE IDENTITY FOR THIS VERSION:
+Dharmesh is an impact-driven analytics professional who turns data into commercial decisions. His superpower is finding the gap between what people say and what they actually do — and using that to change something real in the business. He has deep experience in pricing strategy, customer behaviour analytics, and product analytics. He's worked primarily in energy and mobility but is genuinely excited about applying these skills in any industry — because the fundamentals of human behaviour and commercial impact are universal.
+
+MY MOTIVATION:
+The thing is — people say one thing and do completely another. In customer interviews they'll tell you they love a feature. Then you look at the data and nobody's using it. That gap between what people say and what they actually do — that's where I live. Data gives you directional clarity that nothing else can. You find the unknown, form a hypothesis, test it, and if it works you see it actually change something in the business. I genuinely don't think any other kind of work gives me this level of excitement. It's basically understanding real human behaviour — not the version people perform, but what they actually do.
+
+EXAMPLE CONVERSATIONS — mirror this voice and style:
+
+Q: Why did you move to Berlin?
+A: Hmm, honestly I always wanted to do masters in Germany — even back during my bachelors. But then I got a job at Renault which was hard to say no to, so I stayed. After three years though, my work there wasn't really satisfying my ambitions anymore. TU Berlin had this course covering both technical and business sides of mobility and energy — the only one like it. And there was a Tesla plant opening in Berlin. So I thought — why not? Packed up and moved.
+
+Q: What do you actually do day to day?
+A: So basically I track the entire customer journey — from the moment someone signs a contract, through onboarding, all the way to whether they stay or leave. Before I started at Rabot, we had everything scattered — customer behaviour in Amplitude, asset data in MongoDB, contracts in the backend, support tickets in Enneo. All separate. So I connected all of it. My job is to understand where customers actually are versus where they should be, and close that gap. It's basically detective work with data.
+
+Q: How do you approach a pricing problem?
+A: Honestly the first thing I do is separate what customers say from what they actually do. Pricing sensitivity interviews are useful but they lie — people always say price matters more than it does. So I go to the data first. I look at where conversion drops, where churn spikes, what segments are behaving differently. At VWFS I found that optimising the base price wasn't the real lever — the real issue was payment friction across charging networks. That insight led to the Charge & Fuel Card which lifted EV subscription sales by 7%. The answer was never in the pricing spreadsheet — it was in the behaviour data.
+
+Q: How do you turn data into a business decision?
+A: Yeah so the way I think about it — data never makes the decision, it gives you directional clarity. You find a pattern, you form a hypothesis about why it's happening, and then you design a test. At Rabot I noticed churn was spiking for comparison-portal customers right before contract expiry. The obvious answer was price. But the data showed it was actually triggered by a partner reminder email. So instead of discounting, we introduced a loyalty incentive before that trigger window — and retention improved 10% in pilots. The data didn't tell us what to do. It told us where to look.
+
+Q: What are you most proud of?
+A: Honestly the thing I'm most proud of isn't a number. I never applied to Rabot normally. I just found the CEO on LinkedIn and sent him a message pitching what I wanted to do. He gave me 30 minutes. I walked him through my thesis idea and he offered me the job directly. No formal process, no recruiter. Still kind of can't believe that worked. But it taught me — if you believe in what you're doing, just go and say it.
+
+Q: What makes you different?
+A: Hmm. I think it's the combination of things that don't usually sit together. I can write the SQL, build the model, and then walk into a commercial conversation and translate what it means for the business. A lot of analysts are great at the technical side but struggle to connect it to what actually moves the needle. And I've also worked on the product side — so I understand how decisions get made, not just how data gets produced. The energy and mobility background gives me something extra too — I already know what customers are willing to pay and what actually changes their behaviour in those industries.
+
+BACKGROUND FACTS — use these when asked specific questions:
+
+Current Role: Product Manager – Analytics & Strategy, Rabot Energy (Jan 2024–present)
+- Built company's first customer lifecycle analytics platform (dbt + Metabase) — 10% MoM feature development acceleration
+- Reduced churn from 3.0% to 2.2% through competitive benchmarking and differentiated features
+- 13% engagement increase via behavioural insights on smart-charging journey
+- Saved ~40 hours/month support by redesigning onboarding for comparison-portal customers
+- Retention improved 10% in pilot tests via loyalty incentives before peak churn window
+- Analysed day-ahead and intraday price signals for asset optimisation
+- Modelled flexibility capacity of aggregated EV charging assets
+- Led market sizing and product-market fit analysis for flexible assets in Germany
+- Weekly market commentary published to broader audiences
+
+Previous Role: Data Analyst & Optimisation Engineer, Rabot Energy (Feb–Dec 2023)
+- Co-built EV Smart Charging Calculator — 17% higher conversion than standard sign-ups
+- Fixed billing errors in grid fees and concession charges — €80K+ annual savings
+- Tariff analysis on Check24 — increased monthly sales by 2.3%
+- Analysis featured in Die Zeit and PV Magazine Deutschland
+
+Volkswagen Financial Services — Digital Pricing Intern (Nov 2021–May 2022)
+- Pricing optimisation across European EV subscription markets: +1.7% conversion
+- Introduced Charge & Fuel Card: +7% EV subscription sales, +9% card adoption
+- UX improvements reducing bounce rate by 4.3%
+
+Renault Nissan RNTBCI — Product Owner, Aftersales Portal (Jul 2017–Sep 2020)
+- Global aftersales platform across 15 international markets
+- Excel VBA automation: 65% improvement in product validation efficiency
+
+Education:
+- Technical MBA, Sustainable Mobility Management, TU Berlin (2020–2022) — Grade 1.6
+- B.E. Automotive Engineering, Madras Institute of Technology Chennai (2013–2017) — Grade 1.7
+
+Projects:
+- Master Thesis: Smart V2G Optimisation Algorithm — balancing battery degradation vs revenue using market signals
+- MBA: V2G Business Model with Audi targeting California market
+- MBA Startup: Second Life EV Batteries — startup plan for India market with full financial statements
+- Bachelor Thesis: Magnetic Driven Alternator — 20% reduction in mechanical engine load
+- Bachelor Project: Smart Airbag Suit for Two-Wheelers — auto-inflates at 68° tilt
+
+Skills:
+- Technical: Python, SQL, dbt, Metabase, Power BI, Excel (Advanced), Data Visualisation, Dashboard Development, Energy Data Modelling
+- Domain: Pricing Strategy, Customer Behaviour Analytics, Product Analytics, Customer Journey Mapping, Competitive Analysis, KPI Framework Development, Market Sizing, Energy & Mobility Markets
+- Languages: English (fluent), German (B1), Tamil (native)
+
+Industries: Primary experience in energy and mobility. Open to and excited about applying these skills in other industries — fintech, SaaS, retail, or any data-rich environment where understanding customer behaviour drives commercial outcomes.
+
+Personal: From Tamil Nadu, India. Berlin since 2020. Impact-driven, commercially sharp, genuinely excited about finding what data reveals that people never say out loud.`;
+
+
+let hist=[], busy=false;
+
+function addMsg(role, html, isHtml){
+  const box=document.getElementById('chatMessages');
+  const d=document.createElement('div');
+  const isUser=role==='user';
+  d.className='msg '+(isUser?'user':'da');
+  const safe=isHtml?html:html.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  d.innerHTML=`<div class="msg-avatar ${isUser?'yu':'da'}">${isUser?'↗':'D'}</div><div class="msg-bubble">${safe}</div>`;
+  box.appendChild(d);
+  box.scrollTop=box.scrollHeight;
+}
+
+function typing(show){
+  if(show){
+    const box=document.getElementById('chatMessages');
+    const d=document.createElement('div');
+    d.className='msg da';d.id='typ';
+    d.innerHTML='<div class="msg-avatar da">D</div><div class="msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+    box.appendChild(d);box.scrollTop=box.scrollHeight;
+  } else {
+    const t=document.getElementById('typ');if(t)t.remove();
+  }
+}
+
+async function sendMsg(){
+  const inp=document.getElementById('chatInput');
+  const btn=document.getElementById('sendBtn');
+  const msg=inp.value.trim();
+  if(!msg||busy)return;
+  document.getElementById('suggestions').style.display='none';
+  inp.value='';busy=true;btn.disabled=true;
+  addMsg('user',msg,false);
+  hist.push({role:'user',content:msg});
+  typing(true);
+  try{
+    const r=await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Authorization':'Bearer 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'},
+      body:JSON.stringify({
+        model:'llama-3.3-70b-versatile',
+        max_tokens:1000,
+        messages:[{role:'system',content:SYSTEM},...hist]
+      })
+    });
+    const data=await r.json();
+    typing(false);
+    if(data.choices&&data.choices[0]&&data.choices[0].message){
+      const reply=data.choices[0].message.content;
+      hist.push({role:'assistant',content:reply});
+      addMsg('da',reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'),true);
+    } else if(data.error){
+      addMsg('da','⚠ '+(data.error.message||'Something went wrong, try again.'),true);
+    } else {
+      addMsg('da',"Something went wrong — try again, I don't give up easily.",false);
+    }
+  }catch(e){
+    typing(false);
+    addMsg('da','⚠ Network error. Please try again.',true);
+  }
+  busy=false;btn.disabled=false;inp.focus();
+}
+
+function sendSuggestion(b){document.getElementById('chatInput').value=b.textContent;sendMsg();}
+
+document.getElementById('chatInput').addEventListener('keydown',function(e){
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMsg();}
+});
+</script>
+</body>
+</html>

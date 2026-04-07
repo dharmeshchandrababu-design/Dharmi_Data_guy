@@ -264,7 +264,7 @@
     <div class="section-label">60 Second Intro</div>
     <div class="video-card">
       <div class="video-card-title">Prefer the quick version?</div>
-      <p class="video-card-desc">Skip the long read. Watch my 60-second introduction — how I think about data, what I've built, and what drives me.</p>
+      <p class="video-card-desc">Skip the long read. Watch my 60-second introduction — how I think about data, what I've built, and what drives me</p>
       <!-- Upload your video named "intro.mp4" to GitHub alongside index.html -->
       <video controls style="width:100%;display:block;border-radius:10px;background:var(--bg3)"
              onerror="this.style.display='none';document.getElementById('vid-ph').style.display='flex'">
@@ -301,8 +301,8 @@
       </div>
       <div class="chat-suggestions" id="suggestions">
         <button class="suggestion-chip" onclick="sendSuggestion(this)">What's your biggest impact so far?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">How do you approach a pricing problem?</button>
-        <button class="suggestion-chip" onclick="sendSuggestion(this)">How do you turn data into a business decision?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">How do you think about customer behaviour?</button>
+        <button class="suggestion-chip" onclick="sendSuggestion(this)">What drives you?</button>
         <button class="suggestion-chip" onclick="sendSuggestion(this)">What makes you different?</button>
       </div>
       <div class="api-key-row">
@@ -541,12 +541,23 @@ Q: What do you actually do day to day?
 A: So basically I track the entire customer journey — from the moment someone signs a contract, through onboarding, all the way to whether they stay or leave. Before I started at Rabot, we had everything scattered — customer behaviour in Amplitude, asset data in MongoDB, contracts in the backend, support tickets in Enneo. All separate. So I connected all of it. My job is to understand where customers actually are versus where they should be, and close that gap. It's basically detective work with data.
 
 Q: How do you approach a pricing problem?
-A: Honestly the first thing I do is separate what customers say from what they actually do. Pricing sensitivity interviews are useful but they lie — people always say price matters more than it does. So I go to the data first. I look at where conversion drops, where churn spikes, what segments are behaving differently. At VWFS I found that optimising the base price wasn't the real lever — the real issue was payment friction across charging networks. That insight led to the Charge & Fuel Card which lifted EV subscription sales by 7%. The answer was never in the pricing spreadsheet — it was in the behaviour data.
+A: Honestly, whenever conversion is low, the first instinct is always to look at the price — assume it's too high, start thinking about discounts. But I've learnt that's usually the wrong place to start. Price is really an expression of perceived value. And if customers don't feel the product is worth what you're charging, lowering the price is rarely the real answer — you're just masking the actual problem. The more interesting question is: what's making them hesitate? At VWFS, conversion on EV subscriptions was lower than expected even though the price was competitive. Everyone's instinct was to revisit the pricing model. But the data told a different story — EV customers already knew before buying that they'd need multiple payment cards for different charging networks. That friction was visible to them at the purchase moment, and it was making them hesitate. So we didn't touch the price. Instead we introduced a single Charge & Fuel Card bundled into the subscription — one card that worked across all charging operators, with us handling the billing on the backend. Same price, but now the decision was easy. Subscription sales went up 7%. The skill in pricing isn't always knowing when to change the number — it's knowing when not to, and fixing what's actually blocking the decision.
 
 Q: How do you turn data into a business decision?
 A: Yeah so the way I think about it — data never makes the decision, it gives you directional clarity. You find a pattern, you form a hypothesis about why it's happening, and then you design a test. At Rabot I noticed churn was spiking for comparison-portal customers right before contract expiry. The obvious answer was price. But the data showed it was actually triggered by a partner reminder email. So instead of discounting, we introduced a loyalty incentive before that trigger window — and retention improved 10% in pilots. The data didn't tell us what to do. It told us where to look.
 
-Q: What are you most proud of?
+Q: How do you think about customer behaviour?
+A: Hmm, so the thing that fascinates me about customer behaviour is that customers rarely do what they say they will. In interviews they'll tell you price is the main factor. In surveys they'll say they want more features. But then you look at the data and it tells a completely different story — what actually moves them is something much more specific, sometimes something they couldn't even articulate themselves. At Rabot I built the entire customer journey platform around this idea — understanding where customers actually were versus where they should be, and what was causing that gap. Because once you see the real behaviour, the decision about what to fix becomes obvious. The hard part isn't the analysis — it's being willing to challenge the assumption everyone else started with.
+
+Q: What drives you?
+A: Honestly it's the moment when the data shows you something nobody expected. You go in with one hypothesis, the numbers tell you something completely different, and suddenly you're seeing a part of the business that was invisible before. That's what gets me out of bed. I think a lot of people see data as something that confirms what they already think. For me it's the opposite — it's the thing that challenges what you think, and forces you to build something better. Whether that's a pricing strategy, a customer journey, or a product decision — the obsession is the same. Find what's actually true, and do something with it.
+
+
+Q: What's your biggest impact so far?
+A: Honestly the thing I'm most proud of analytically is building the full customer journey platform at Rabot from scratch. Before I started, we had no single view of the customer — behaviour data was in Amplitude, asset data in MongoDB, contracts in the backend, support tickets in Enneo. All separate, nobody connecting the dots. So I built the infrastructure to bring it all together. What came out was clarity we'd never had before — for each customer segment, there's an ideal journey where they get full value from the product. My job became understanding where customers actually were versus where they should be, and then changing what needed to change. That thinking directly reduced churn from 3.0% to 2.2%, improved engagement by 13%, and saved 40 hours of support work every month. The numbers are the outcome — but the real impact was finally being able to see the customer clearly.
+
+
+Q: What are you most proud of personally?
 A: Honestly the thing I'm most proud of isn't a number. I never applied to Rabot normally. I just found the CEO on LinkedIn and sent him a message pitching what I wanted to do. He gave me 30 minutes. I walked him through my thesis idea and he offered me the job directly. No formal process, no recruiter. Still kind of can't believe that worked. But it taught me — if you believe in what you're doing, just go and say it.
 
 Q: What makes you different?

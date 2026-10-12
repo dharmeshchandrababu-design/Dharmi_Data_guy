@@ -648,35 +648,44 @@ async function sendMsg(){
   addMsg('user',msg,false);
   hist.push({role:'user',content:msg});
   typing(true);
-  try{
+    try{
     const r = await fetch('https://groq-proxy-data-analyst.dharmesh-dare.workers.dev', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-      body:JSON.stringify({
-        model:'llama-3.3-70b-versatile',
-        max_tokens:1000,
-        messages:[{role:'system',content:SYSTEM},...hist]
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'openai/gpt-oss-20b',
+        max_tokens: 500,
+        reasoning_effort: 'low',
+        messages: [{role:'system',content:SYSTEM}, ...hist.slice(-4)]
       })
     });
-    const data=await r.json();
+
+    if (r.status === 429) {
+      typing(false);
+      addMsg('da', "I'm getting a lot of questions right now. Give me a minute, or check the 60-second intro above.", false);
+      hist.pop();
+      busy = false; btn.disabled = false;
+      return;
+    }
+
+    const data = await r.json();
     typing(false);
-    if(data.choices&&data.choices[0]&&data.choices[0].message){
-      const reply=data.choices[0].message.content;
+    const reply = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    if (reply) {
       hist.push({role:'assistant',content:reply});
-      addMsg('da',reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'),true);
-    } else if(data.error){
-      addMsg('da','⚠ '+(data.error.message||'Something went wrong, try again.'),true);
+      addMsg('da', reply.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>'), true);
+    } else if (data.error) {
+      addMsg('da', "I'm a bit overloaded right now, try again in a minute.", false);
+      hist.pop();
     } else {
-      addMsg('da',"Something went wrong — try again, I don't give up easily.",false);
+      addMsg('da', "Hmm, that one didn't come through. Try asking again.", false);
+      hist.pop();
     }
   }catch(e){
     typing(false);
     addMsg('da','⚠ Network error. Please try again.',true);
+    hist.pop();
   }
-  busy=false;btn.disabled=false;inp.focus();
-}
 
 function sendSuggestion(b){document.getElementById('chatInput').value=b.textContent;sendMsg();}
 
